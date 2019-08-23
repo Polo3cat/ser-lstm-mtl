@@ -1,0 +1,17 @@
+version: "3.2"
+services:
+ features_db:
+   build:
+     context: .
+     dockerfile: Dockerfile
+   container_name: features_db
+   image: postgres:latest
+   ports:
+     - '5432:5432/tcp'
+   volumes:
+     - ./share:/var/lib/postgresql/data
+     - /var/run/postgresql:/var/run/postgresql
+   environment:
+     POSTGRES_USER: docker
+     POSTGRES_PASSWORD: docker
+   restart: unless-stopped
